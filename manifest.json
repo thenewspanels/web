@@ -1,10 +1,6 @@
----
-permalink: /manifest.json
----
-
 {
-  "name": "{{ site.name }}",
-  "short_name": "{{ site.shortname }}",
+  "name": "The News Panels",
+  "short_name": "News Panels",
   "icons": [{
         "src": "/images/favicon-96.png",
         "sizes": "96x96",
