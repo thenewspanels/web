@@ -1,4 +1,4 @@
 .idea/
 .sass-cache/
 _site/
-algolia-api
+_algolia_api_key

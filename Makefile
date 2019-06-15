@@ -5,6 +5,7 @@ start:
 
 build:
 	bundle exec jekyll build --config _config.yml,_config-dev.yml
+	bundle exec htmlproofer ./_site
 
 algolia:
 	bundle exec jekyll algolia

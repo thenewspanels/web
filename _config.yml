@@ -102,6 +102,14 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  - Makefile
+  - .travis.yml
+  - _conf*.yml
+  - _algolia_api_key
+  - .gitignore
+  - .idea/
+  - .sass-cache/
+  - vendor/
 
 sass:
     sass_dir: ./css
