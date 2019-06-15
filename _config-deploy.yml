@@ -1,2 +1,2 @@
 source: "./"
-destination: "../web-deploy/"
+destination: "./_deploy/"
