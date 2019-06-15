@@ -11,9 +11,9 @@ algolia:
 
 deploy: algolia
 	rm -rf /tmp/thenewspanels
-	git clone git@github.com:thenewspanels/web /tmp/thenewspanels -b gh-pages
-	bundle exec jekyll build
-	cd /tmp/thenewspanels/; \
+	git clone https://github.com/thenewspanels/web.git ../web-deploy -b gh-pages
+	bundle exec jekyll build --config _config.yml,_config-deploy.yml
+	cd ../web-deploy; \
 	mogrify -quality 5 ./images/comics/*/*/*/*.jpg; \
 	git add .; \
 	git commit -m "make deploy"; \

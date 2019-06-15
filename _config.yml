@@ -12,7 +12,7 @@ domainurl: "https://thenewspanels.com"
 baseurl: "/"
 
 source: "./"
-destination: "/tmp/thenewspanels/"
+destination: "./_site/"
 
 collections:
     comics:
