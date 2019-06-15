@@ -12,7 +12,7 @@ algolia:
 
 deploy: algolia
 	rm -rf /tmp/thenewspanels
-	git clone git@github.com:pravinmb/pravinmb.github.io /tmp/thenewspanels -b gh-pages
+	git clone git@github.com:thenewspanels/TheNewsPanels.github.io /tmp/thenewspanels -b gh-pages
 	bundle exec jekyll build
 	cd /tmp/thenewspanels/; \
 	mogrify -quality 5 ./images/comics/*/*/*/*.jpg; \
