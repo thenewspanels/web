@@ -112,6 +112,10 @@ pwa:
 algolia:
     application_id: 'X2CM5LGGSE'
     index_name: 'prod_comics'
+    settings:
+        searchableAttributes:
+          - unordered(page-title)
+          - unordered(content)
 
 plugins:
   - jekyll-sitemap
