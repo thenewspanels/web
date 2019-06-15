@@ -1,0 +1,22 @@
+@import "../global.scss";
+
+.footer {
+	clear: both;
+	padding: 0 $box-x;
+	padding-top: 20px;
+	padding-bottom: 80px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.footer__main {
+	@include var(
+		"border-bottom",
+		($box-border-size, solid, "normal-color-text"),
+		$separator: space
+	);
+
+	padding-bottom: 1em;
+	margin-bottom: 2em;
+}

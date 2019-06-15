@@ -1,0 +1,63 @@
+@import "../global.scss";
+
+.banner {
+	@include var("color", "normal-color-focus");
+
+	display: block;
+	position: relative;
+	margin: 0 0 .5em;
+	padding: .5em 0;
+	text-decoration: none;
+
+	@include var(
+		"border-bottom",
+		($box-border-size, solid, "normal-color-focus")
+	);
+}
+
+.banner__left {
+	position: absolute;
+	display: none;
+	left: calc(1em + 1vw);
+	bottom: 0;
+}
+
+.banner__right {
+	position: absolute;
+	display: none;
+	right: calc(1em + 1vw);
+	bottom: 0;
+}
+
+.banner__container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(3vw + .6em);
+	font-weight: bold;
+}
+
+.banner__icon {
+	@include var("filter", "attr-filter-color");
+
+	height: 2em;
+	width: auto;
+}
+
+.banner__name {
+	@include var("color", "normal-color-focus");
+
+	font-family: $font-heading;
+	font-size: 1.2em;
+	margin-bottom: .15em;
+}
+
+@media(min-width: 1000px) {
+	.banner {
+		padding: 1em 0;
+	}
+
+	.banner__left, .banner__right {
+		display: inline-block;
+	}
+}

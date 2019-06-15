@@ -1,0 +1,107 @@
+$box-fixed-x: 4rem;
+$box-fluid-x: 2vw;
+$box-x: calc(#{$box-fixed-x} + #{$box-fluid-x});
+
+$box-fixed-y: .5rem;
+$box-fluid-y: 2vw;
+$box-y: calc(#{$box-fixed-y} + #{$box-fluid-y});
+
+$box-border-size: 2px;
+
+$font-heading: 'Playfair Display SC', 'Lora', serif;
+$font-body: 'Lora', monospace;
+
+$shadow-light: 0 0.2em 1.2em;
+$shadow-full: 0 0.4em 1.2em;
+
+$theme: (
+        "normal-color": #424242,
+        "normal-color-text": #616161,
+        "normal-color-focus": #000000,
+        "normal-background": #FFFFFF,
+        "normal-background-dark": #F5F5F5,
+        "normal-background-darker": #E0E0E0,
+        "normal-background-alpha": rgba(255, 255, 255, 0),
+        "normal-overlay": rgba(255, 255, 255, 0.7),
+        "normal-overlay-inverse": rgba(0, 0, 0, 0.9),
+        "normal-outline": #BDBDBD,
+        "normal-outline-dark": #000000,
+        "normal-focus": rgba(0, 0, 0, 0.1),
+        "normal-focus-light": rgba(0, 0, 0, 0.03),
+        "accent-color": #095427,
+        "accent-color-text": #205e37,
+        "accent-background": #095427,
+        "accent-outline": #063519,
+        "accent-outline-fade": rgba(24, 53, 28, 0.3),
+        "accent-outline-fade2": rgba(24, 53, 28, 0.5),
+        "accent-inverse": #FFFFFF,
+        "attr-filter-color": contrast(0) brightness(0)
+);
+
+$theme-dark: (
+        "normal-color": #F5F5F5,
+        "normal-color-text": #BDBDBD,
+        "normal-color-focus": #FFFFFF,
+        "normal-color-focusable": #A8A8A8,
+        "normal-background": #151515,
+        "normal-background-dark": #202020,
+        "normal-background-darker": #252525,
+        "normal-background-alpha": rgba(0, 0, 0, 0),
+        "normal-overlay": rgba(0, 0, 0, 0.7),
+        "normal-overlay-inverse": rgba(255, 255, 255, 0.8),
+        "normal-outline": #424242,
+        "normal-outline-dark": #FFFFFF,
+        "normal-focus": rgba(255, 255, 255, 0.1),
+        "normal-focus-light": rgba(255, 255, 255, 0.03),
+        "accent-color": #9FF7C9,
+        "accent-color-text": #6CD889,
+        "accent-background": #9FF7C9,
+        "accent-background-light": rgba(108, 216, 137, 0.3),
+        "accent-outline": #09A3FF,
+        "accent-outline-fade": rgba(108, 216, 137, 0.3),
+        "accent-outline-fade2": rgba(108, 216, 137, 0.5),
+        "accent-inverse": #000000,
+        "attr-filter-color": contrast(0) brightness(2)
+
+);
+
+@mixin theme-vars($t) {
+  @each $key, $value in $t {
+    --#{$key}: #{$value};
+  }
+}
+
+@function var-defaults($keys, $separator: space) {
+  $list: ();
+
+  @each $key in $keys {
+    @if map-has-key($theme, $key) {
+      $list: append($list, #{map-get($theme, $key)}, $separator: $separator);
+    }
+    @else {
+      $list: append($list, $key, $separator: $separator);
+    }
+  }
+
+  @return $list;
+}
+
+@function var-values($keys, $separator: space) {
+  $list: ();
+
+  @each $key in $keys {
+    @if map-has-key($theme, $key) {
+      $list: append($list, var(--#{$key}), $separator: $separator);
+    }
+    @else {
+      $list: append($list, $key, $separator: $separator);
+    }
+  }
+
+  @return $list;
+}
+
+@mixin var($attr, $keys, $separator: space) {
+  #{$attr}: var-defaults($keys);
+  #{$attr}: var-values($keys);
+}

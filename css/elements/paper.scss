@@ -1,0 +1,33 @@
+@import "../global.scss";
+
+.paper {
+	display: block;
+}
+
+.paper__item {
+	display: block;
+	margin: 16px;
+	padding: 0;
+
+	@include var(
+		"border",
+		(2px solid "normal-color-focus")
+	);
+}
+
+@media(min-width: 1000px) {
+	.paper__item {
+		display: inline-block;
+		margin: 0;
+		padding: 1vw;
+		border: none;
+	}
+
+	.paper {
+		display: grid;
+		grid-auto-flow: dense;
+		grid-auto-rows: 10vw;
+		grid-auto-columns: 1fr;
+		padding: 1em;
+	}
+}
