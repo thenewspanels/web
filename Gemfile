@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem "jekyll"
 gem "jekyll-sitemap"
 gem "jekyll-pwa-plugin"
+gem "jekyll-prismic"
 gem "html-proofer"
 
 group :jekyll_plugins do

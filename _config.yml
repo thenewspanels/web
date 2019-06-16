@@ -117,6 +117,9 @@ sass:
 pwa:
     dest_js_directory: js
 
+prismic:
+    endpoint: "https://thenewspanels.cdn.prismic.io/api"
+
 algolia:
     application_id: 'X2CM5LGGSE'
     index_name: 'prod_comics'
@@ -129,3 +132,4 @@ plugins:
   - jekyll-sitemap
   - jekyll-pwa-plugin
   - jekyll-algolia
+  - jekyll-prismic
