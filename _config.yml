@@ -128,7 +128,7 @@ algolia:
           - unordered(page-title)
           - unordered(content)
 
-plugins:
+gems:
   - jekyll-sitemap
   - jekyll-pwa-plugin
   - jekyll-algolia

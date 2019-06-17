@@ -1,4 +1,4 @@
-.PHONY: start build algolia preview deploy publish install clean
+.PHONY: start build algolia preview-clone preview-build preview deploy-clone deploy-build deploy publish install clean
 
 start:
 	open http://localhost:4000
@@ -9,7 +9,7 @@ build:
 	bundle exec htmlproofer ./_site
 
 algolia:
-	bundle exec jekyll algolia
+	bundle exec jekyll algolia || echo 'Unable to update algolia indeces.'
 
 preview-clone:
 	git clone https://${GITHUB_TOKEN_OWNER}:${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ../web-deploy -b gh-pages
