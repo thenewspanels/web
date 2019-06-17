@@ -20,7 +20,7 @@ preview-build:
 preview: preview-clone preview-build publish
 
 deploy-clone:
-	git clone https://${GITHUB_TOKEN_OWNER}:${GITHUB_TOKEN}@github.com/thenewspanels.github.io.git ../web-deploy
+	git clone https://${GITHUB_TOKEN_OWNER}:${GITHUB_TOKEN}@github.com/thenewspanels/thenewspanels.github.io.git ../web-deploy
 
 deploy-build:
 	bundle exec jekyll build --config _config.yml,_config-deploy.yml
