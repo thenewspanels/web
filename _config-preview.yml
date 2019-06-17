@@ -1,6 +1,6 @@
-url: "https://preview.thenewspanels.com"
-baseurl: "https://preview.thenewspanels.com"
-domainurl: "https://preview.thenewspanels.com"
+url: "https://thenewspanels.github.io/web"
+baseurl: "/web"
+domainurl: "https://thenewspanels.github.io"
 
 source: "./"
 destination: "../web-deploy/"
