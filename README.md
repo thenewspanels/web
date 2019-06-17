@@ -47,7 +47,7 @@ updated.
 
 For general changes that are not ready to be rolled out to the public, you should work in
 `staging`. When this branch is pushed to, Travis will commit the built site to the `gh-pages`
-branch, which is hosted at [preview.thenewspanels.com](https://preview.thenewspanels.com/).
+branch, which is hosted at [thenewspanels.github.io/web/](https://thenewspanels.github.io/web/).
 
 When these changes are functional, they should be merged into the `master` branch, which will
 then push to [thenewspanels.github.io](https://github.com/thenewspanels/thenewspanels.github.io/).

@@ -2,5 +2,5 @@
 permalink: /robots.txt
 ---
 User-agent: *
-Disallow:{% if site.url == "preview" %} /{% endif %}
+Disallow:{% if site.build == "preview" %} /{% endif %}
 Sitemap: {{ site.domainurl }}/sitemap.xml
