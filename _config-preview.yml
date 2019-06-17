@@ -1,0 +1,6 @@
+url: "https://preview.thenewspanels.com"
+baseurl: "https://preview.thenewspanels.com"
+domainurl: "https://preview.thenewspanels.com"
+
+source: "./"
+destination: "../web-deploy/"

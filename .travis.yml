@@ -8,6 +8,8 @@ install:
 script:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       make deploy;
+    elif [ "$TRAVIS_BRANCH" == "staging" ]; then
+      make preview;
     else make build; fi
 
 branches:
