@@ -1,2 +1,4 @@
 source: "./"
 destination: "../web-deploy/"
+
+build: "deployment"
