@@ -18,7 +18,7 @@ collections:
     comics:
         output: true
         permalink: comics/:name/
-    pages:
+    papers:
         output: true
         permalink: :name/
 
