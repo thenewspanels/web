@@ -164,6 +164,8 @@ body[webkit] main.--frame {
 	main {
 		margin: $box-y $box-x;
 		padding: 0;
+
+		box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
 	}
 
 	.--content {
