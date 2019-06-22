@@ -2,27 +2,31 @@
 layout: default
 ---
 
-{% assign currNum = page.number | plus: 0 %}
-{% for pg in site.papers %}
-{% assign pgStart = pg.start | plus: 0 %}
-{% if pgStart <= currNum %}{% assign currPage = pg %}{% endif %}
+{% assign paperUid = nil %}
+{% for paper in site.prismic.collections.papers %}
+{% for comic in paper.fragments.comics.group_documents %}
+{% if comic.fragments.comic.uid == document.uid %}
+{% assign paperUid = paper.uid %}
+{% endif %}
+{% endfor %}
 {% endfor %}
 
-{% if currPage %}
+{% if paperUid %}
 <script type="text/javascript">
     if (parent.location == self.location)
-        document.location.href = "{{ site.url }}{{ currPage.url }}#{{ page.title }}";
+        document.location.href = "{{ site.url }}/{{ paperUid }}/#{{ document.uid }}";
 </script>
 {% endif %}
 
 <main class="--frame">
-    <h3 class="title --content">{{ page.page-title }}</h3>
-    <p class="--sr-only">{{ page.page-desc }}</p>
+    <h3 class="title --content">{{ document.fragments.title.text }}</h3>
+    <p class="--sr-only">{{ document.fragments.desc.text }}</p>
     <div class="comic__wrapper">
         <div id="comicPanels" class="comic--wide">
-            {% for image in page.images %}
+            {% for panel in document.fragments.panels.group_documents %}
             <div class="comic--wide__panel">
-                <img class="comic--wide__panel__img" src="{{ site.url }}{{ image }}">
+                <img class="comic--wide__panel__img" src="{{ panel.fragments.image.url }}" alt="{{ panel.fragments.alt.text }}">
+                <p class="--sr-only">{{ panel.fragments.alt.text }}</p>
             </div>
             {% endfor %}
         </div>

@@ -2,13 +2,13 @@
 	{% assign pages = include.pages | sort: "title" %}
 
 	{% assign first = pages | first %}
-	<a class="paginator__icon{% if first.number == include.number %} paginator__icon--disabled{% endif %}" href="{{ site.url }}{{ first.url }}" title="Jump to First">
+	<a class="paginator__icon{% if first.uid == include.number %} paginator__icon--disabled{% endif %}" href="{{ site.url }}/{{ first.uid }}/" title="Jump to First">
 		<i class="material-icons">first_page</i>
 	</a>
 
 	{% assign previousNum = include.number | minus: 2 %}
 	{% if previousNum >= 0 %}{% assign previous = pages[previousNum] %}{% endif %}
-	<a class="paginator__icon{% if previous %}{% else %} paginator__icon--disabled{% endif %}" href="{{ site.url }}{{ previous.url }}" title="Previous">
+	<a class="paginator__icon{% if previous %}{% else %} paginator__icon--disabled{% endif %}" href="{{ site.url }}/{{ previous.uid }}/" title="Previous">
 		<i class="material-icons">navigate_before</i>
 	</a>
 
@@ -16,12 +16,12 @@
 
 	{% assign nextNum = include.number | plus: 0 %}
 	{% assign next = pages[nextNum] %}
-	<a class="paginator__icon{% if next %}{% else %} paginator__icon--disabled{% endif %}" href="{{ site.url }}{{ next.url }}" title="Next">
+	<a class="paginator__icon{% if next %}{% else %} paginator__icon--disabled{% endif %}" href="{{ site.url }}/{{ next.uid }}/" title="Next">
 		<i class="material-icons">navigate_next</i>
 	</a>
 
 	{% assign last = pages | last %}
-	<a class="paginator__icon{% if last.number == include.number %} paginator__icon--disabled{% endif %}" href="{{ site.url }}{{ last.url }}" title="Jump to Last">
+	<a class="paginator__icon{% if last.uid == include.number %} paginator__icon--disabled{% endif %}" href="{{ site.url }}/{{ last.uid }}/" title="Jump to Last">
 		<i class="material-icons">last_page</i>
 	</a>
 </div>

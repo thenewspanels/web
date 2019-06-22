@@ -5,15 +5,16 @@ permalink: /
 
 <!DOCTYPE html>
 <html lang="en">
-	{% assign post = site.papers | last %}
+	{% assign post = site.prismic.collections.papers | last %}
+	{% assign url = site.url | append: '/' | append: post.uid | append: '/' %}
 	<head>
 	    {% include head.html title="Redirecting to Comics Page" %}
-		<meta http-equiv="refresh" content="0; URL='{{ site.url }}{{ post.url }}'">
+		<meta http-equiv="refresh" content="0; URL='{{ url }}'">
 	</head>
 	<body>
-		Redirecting to <a href="{{ site.url }}{{ post.url }}">{{ site.url }}{{ post.url }}</a>
+		Redirecting to <a href="{{ url }}">{{ url }}</a>
 		<script type="text/javascript">
-			window.location = "{{ site.url }}{{ post.url }}";
+			window.location = "{{ url }}";
 		</script>
 	</body>
 </html>

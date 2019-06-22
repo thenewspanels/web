@@ -1,7 +1,7 @@
 ---
 layout: text
 permalink: /about/privacy/
-head-title: "Privacy Policy"
+title: "Privacy Policy"
 last_updated: "25 May 2019"
 ---
 

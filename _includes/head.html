@@ -2,16 +2,15 @@
 
 {% assign title = site.name %}
 {% if page.title %}{% assign title = site.name | append: ' - ' | append: page.title %}{% endif %}
-{% if page.name %}{% assign title = site.name | append: ' - ' | append: page.name %}{% endif %}
-{% if page.page-title %}{% assign title = site.name | append: ' - ' | append: page.page-title %}{% endif %}
+{% if document %}{% assign title = site.name | append: ' - ' | append: document.fragments.title.text %}{% endif %}
 {% if include.title %}{% assign title = include.title %}{% endif %}
 
 {% assign image = site.icon %}
-{% if page.images %}{% assign image = page.images[0] %}{% endif %}
+{% if document and document.type == 'comic' %}{% assign image = document.fragments.panels.group_documents[0].image.url %}{% endif %}
 
 {% assign description = site.description %}
 {% if page.description %}{% assign description = page.description %}{% endif %}
-{% if page.page-desc %}{% assign description = page.page-desc %}{% endif %}
+{% if document and document.type == 'comic' %}{% assign description = document.fragments.desc.text %}{% endif %}
 
 <meta name="description" content="{{ description }}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=12.0, user-scalable=yes"/>
@@ -44,7 +43,7 @@
 <link href="https://yarnpkg.com/en/package/normalize.css" rel="stylesheet">
 <link href="{{ site.url }}/css/styles.css" rel="stylesheet">
 
-{% if page.images %}
+{% if document and document.type == 'comic' %}
 <meta name="twitter:card" content="summary_large_image">
 {% else %}
 <meta name="twitter:card" content="summary">

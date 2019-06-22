@@ -19,7 +19,7 @@ layout: default
 	</div>
 </main>
 
-{% comment %}{% include footer.html paginator=true paginator_pages=site.prismic.collections.papers paginator_number=document.fragments.uid %}{% endcomment %}
+{% include footer.html paginator=true paginator_pages=site.prismic.collections.papers paginator_number=document.uid %}
 
 <div id="comic_dialog" class="dialog dialog--hidden">
 	<a id="comic_close" class="dialog__close"><i class="material-icons">close</i></a>

@@ -1,8 +1,8 @@
 {% assign comic = site.prismic.collections.comics | where: 'uid', include.uid | first %}
 {% assign url = '/comics/' | append: include.uid | append: '/' %}
 <div class="paper__item comic" style="grid-area: {{ include.rowStart }} / {{ include.colStart }} / {{ include.rowEnd }} / {{ include.colEnd }};" data-url="{{ url }}" data-slug="{{ include.uid }}" onclick="onClick(this, '{{ url }}', '{{ include.uid }}');">
-	<h2 class="--sr-only">{{ comic.fragments.page-name.text }}</h2>
-	<p class="--sr-only">{{ comic.fragments.page-desc.text }}</p>
+	<h2 class="--sr-only">{{ comic.fragments.title.text }}</h2>
+	<p class="--sr-only">{{ comic.fragments.desc.text }}</p>
 	<div class="comic__container">
 		<div class="comic__images">
 			{% for image in comic.fragments.panels.group_documents %}

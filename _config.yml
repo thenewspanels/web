@@ -117,7 +117,7 @@ prismic:
     Comic:
       permalink: /comics/:uid/
   collections:
-    page:
+    papers:
       # Query the documents by type (optional)
       type: paper
       # Collection name (optional)
