@@ -104,41 +104,57 @@ exclude:
   - vendor/
 
 sass:
-    sass_dir: ./css
+  sass_dir: ./css
 
 pwa:
-    dest_js_directory: js
+  dest_js_directory: js
 
 prismic:
-    endpoint: "https://thenewspanels.prismic.io/api"
-    links:
-        Paper:
-            permalink: /:uid/
-        Comic:
-            permalink: /comics/:uid/
-    collections:
-        papers:
-            form: papers
-            permalink: /:uid/
-            layout: page.html
-            page_size: 1000
-            output: true
-            output_limit: nil
-        comics:
-            form: comics
-            permalink: /comics/:uid/
-            layout: comic.html
-            page_size: 10000
-            output: true
-            output_limit: nil
+  endpoint: https://thenewspanels.prismic.io/api
+  links:
+    Paper:
+      permalink: /:uid/
+    Comic:
+      permalink: /comics/:uid/
+  collections:
+    page:
+      # Query the documents by type (optional)
+      type: paper
+      # Collection name (optional)
+      # form: papers
+      # Permalink used to generate the output files. This should match an
+      # entry in "links", so documents link to the right output files
+      permalink: /:uid/
+      # Layout file for this collection
+      layout: page.html
+      # Generate output files or not (default: false)
+      output: true
+      #Limit output to a number of files, useful for large collections
+      # (optional)
+      output_limit: nil
+    comics:
+      # Collection name (optional)
+      type: comic
+      # Collection name (optional)
+      # form: comics
+      # Permalink used to generate the output files. This should match an
+      # entry in "links", so documents link to the right output files
+      permalink: /comics/:uid/
+      # Layout file for this collection
+      layout: comic.html
+      # Generate output files or not (default: false)
+      output: true
+      # Limit output to a number of files, useful for large collections
+      # (optional)
+      output_limit: nil
 
 algolia:
-    application_id: 'X2CM5LGGSE'
-    index_name: 'prod_comics'
-    settings:
-        searchableAttributes:
-          - unordered(page-title)
-          - unordered(content)
+  application_id: 'X2CM5LGGSE'
+  index_name: 'prod_comics'
+  settings:
+    searchableAttributes:
+      - unordered(page-title)
+      - unordered(content)
 
 gems:
   - jekyll-sitemap

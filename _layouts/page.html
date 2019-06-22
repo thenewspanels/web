@@ -6,21 +6,20 @@ layout: default
 	{% include banner.html %}
 
 	<div class="paper">
-		{% assign comics = site.comics | sort: "title" %}
-		{% assign positions = site.positions[page.grid] %}
+		{% assign comics = document.fragments.comics.group_documents %}
+		{% assign positions = site.positions[0] %}
 		{% assign end = positions.size | minus: 1 %}
 		{% for i in (0..end) %}
 		{% assign position = positions[i] %}
-		{% assign num = page.start | minus: 1 | plus: i %}
-		{% assign comic = comics[num] %}
+		{% assign comic = comics[i].fragments.comic %}
 		{% if comic %}
-		{% include comic.html comic=comic rowStart=position.rowStart rowEnd=position.rowEnd colStart=position.colStart colEnd=position.colEnd %}
+		{% include comic.html uid=comic.uid rowStart=position.rowStart rowEnd=position.rowEnd colStart=position.colStart colEnd=position.colEnd %}
 		{% endif %}
 		{% endfor %}
 	</div>
 </main>
 
-{% include footer.html paginator=true paginator_pages=site.papers paginator_number=page.number %}
+{% comment %}{% include footer.html paginator=true paginator_pages=site.prismic.collections.papers paginator_number=document.fragments.uid %}{% endcomment %}
 
 <div id="comic_dialog" class="dialog dialog--hidden">
 	<a id="comic_close" class="dialog__close"><i class="material-icons">close</i></a>
@@ -32,7 +31,7 @@ layout: default
 <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
 <script type="text/javascript">
-	page('/{{ page.number }}/', function() {
+	page('/{{ document.uid }}/', function() {
 
 	});
 	page('/comics/:id/', function(id) {
@@ -88,7 +87,7 @@ layout: default
 		    window.history.pushState('', '/', window.location.pathname);
 		else window.location.hash = '';
 
-		page('/{{ page.number }}/');
+		page('/{{ document.uid }}/');
 
 		//preventBodyScroll(false);
 	};
