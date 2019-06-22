@@ -14,14 +14,6 @@ baseurl: "/"
 source: "./"
 destination: "./_site/"
 
-collections:
-    comics:
-        output: true
-        permalink: comics/:name/
-    papers:
-        output: true
-        permalink: :name/
-
 positions:
   - - rowStart: 1
       colStart: 1
@@ -118,7 +110,27 @@ pwa:
     dest_js_directory: js
 
 prismic:
-    endpoint: "https://thenewspanels.cdn.prismic.io/api"
+    endpoint: "https://thenewspanels.prismic.io/api"
+    links:
+        Paper:
+            permalink: /:uid/
+        Comic:
+            permalink: /comics/:uid/
+    collections:
+        papers:
+            form: papers
+            permalink: /:uid/
+            layout: page.html
+            page_size: 1000
+            output: true
+            output_limit: nil
+        comics:
+            form: comics
+            permalink: /comics/:uid/
+            layout: comic.html
+            page_size: 10000
+            output: true
+            output_limit: nil
 
 algolia:
     application_id: 'X2CM5LGGSE'
