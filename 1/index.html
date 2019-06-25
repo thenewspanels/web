@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
-	<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
 
 
@@ -75,19 +75,55 @@
 
 
 
-</head>
-<body>
-	<main>
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+
+        <main>
 	<a href="https://thenewspanels.github.io/web" class="banner">
 	<div class="banner__container">
 		<img class="banner__icon" src="https://thenewspanels.github.io/web/images/favicon.svg">
 		&nbsp;
 		<span class="banner__name">The News Panels</span>
 	</div>
-	<div class="banner__left">
-		<p>Saturday, June 22, 2019</p>
-	</div>
 </a>
+	<div class="widget__container">
+    <div class="widget">
+        <div class="widget__text">
+            <span class="widget__title">Today's Date:</span>
+            <span id="widget-date"></span>
+        </div>
+    </div>
+    <div class="widget">
+        <img id="widget-weather-icon" style="height: 100%; margin-right: 16px;">
+        <div class="widget__text">
+            <span class="widget__title">Weather (<span id="widget-weather-location"></span>):</span>
+            <span id="widget-weather"></span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#widget-date').text(new Date().toDateString());
+
+    $.get('http://ip-api.com/json/', function(response) {
+        $("#widget-weather-location").text(response.city + ', ' + response.region);
+
+        if (response.lat < 0)
+            response.lat += 360;
+        if (response.lon < 0)
+            response.lon += 360;
+
+        $.get('https://api.weatherbit.io/v2.0/current?lat=' + response.lat + '&lon=' + response.lon + '&key=e46ee7b526e14cfaa8402cb037e9efa5', function(weather) {
+            $('#widget-weather').text(weather.data[0].weather.description);
+            $('#widget-weather-icon').attr("src", "https://www.weatherbit.io/static/img/icons/" + weather.data[0].weather.icon + ".png");
+            console.log(weather);
+        });
+    });
+</script>
+
 
 	<div class="paper">
 		
@@ -387,13 +423,13 @@ window.onload = onSizeChange;
 		onClick(null, "/comics/" + hash + "/", hash);
 </script>
 
-	<script>
-		if (CSS && CSS.supports("( -webkit-overflow-scrolling:touch )")) {
-			document.body.setAttribute("webkit", true);
-		}
-	</script>
-	
-	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+        <script>
+            if (CSS && CSS.supports("( -webkit-overflow-scrolling:touch )")) {
+                document.body.setAttribute("webkit", true);
+            }
+        </script>
+
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 <script type="text/javascript">
     var observer = lozad('.lozad', {
         loaded: function(el) {
@@ -402,7 +438,7 @@ window.onload = onSizeChange;
     });
     observer.observe();
 </script>
-            <script>
+                <script>
                 window.onload = function () {
                     var script = document.createElement('script');
                     var firstScript = document.getElementsByTagName('script')[0];

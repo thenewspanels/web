@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
-	<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
 
 
@@ -75,9 +75,13 @@
 
 
 
-</head>
-<body>
-	
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+
+        
 
 
 
@@ -304,13 +308,13 @@ function scrollComicPrevious() {
 </script>
 
 
-	<script>
-		if (CSS && CSS.supports("( -webkit-overflow-scrolling:touch )")) {
-			document.body.setAttribute("webkit", true);
-		}
-	</script>
-	
-	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+        <script>
+            if (CSS && CSS.supports("( -webkit-overflow-scrolling:touch )")) {
+                document.body.setAttribute("webkit", true);
+            }
+        </script>
+
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 <script type="text/javascript">
     var observer = lozad('.lozad', {
         loaded: function(el) {
@@ -319,7 +323,7 @@ function scrollComicPrevious() {
     });
     observer.observe();
 </script>
-            <script>
+                <script>
                 window.onload = function () {
                     var script = document.createElement('script');
                     var firstScript = document.getElementsByTagName('script')[0];
