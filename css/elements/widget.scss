@@ -1,7 +1,12 @@
 @import "../global.scss";
 
 .widget__container {
-    display: none;
+    display: none; // flex
+    flex-wrap: nowrap;
+    align-items: stretch;
+
+    user-select: none;
+    height: 56px;
 
     padding: 0.5em 1em;
 
@@ -13,7 +18,9 @@
 
 .widget {
     display: inline-block;
+    position: relative;
     padding: 0.3em calc(1vw + 1em);
+    flex-grow: 1;
 
     @include var(
         "border-right",
@@ -21,7 +28,18 @@
     );
 }
 
-.widget > * {
+.widget:last-child {
+    border-right: none;
+}
+
+.widget__text {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.widget__text > * {
     display: inline;
 }
 
@@ -34,5 +52,6 @@
 @media(min-width: 1000px) {
     .widget__container {
         display: block;
+        display: flex;
     }
 }
