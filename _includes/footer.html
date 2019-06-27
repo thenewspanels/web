@@ -1,7 +1,9 @@
 <div class="footer">
+    {% comment %}
     {% if include.paginator %}
     {% include paginator.html pages=include.paginator_pages number=include.paginator_number %}
     {% endif %}
+    {% endcomment %}
     <p class="footer__main rtable">
         <span>
             <b>About...</b><br>

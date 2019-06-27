@@ -9,20 +9,19 @@ permalink: /feed.xml
 		<title>{{ site.name }}</title>
 		<description>{{ site.description }}</description>
 		<link>{{ site.url }}</link>
-		{% assign comics = site.prismic.collections.comics | sort: 'title' %}{% for comic in comics reversed %}
-		<item>
-			<title>{{ comic.name | xml_escape }}</title>
-			{% if comic.description %}<description>{{ comic.description | xml_escape }}</description>
-			{% endif %}{% if comic.date %}<pubDate>{{ comic.date | date_to_xmlschema }}</pubDate>
+		{% assign comics = site.pages | sort_by: 'story.created_at' %}{% for comic in comics reversed %}{% if comic.story and comic.story.content.component == 'comic' %}<item>
+			<title>{{ comic.story.name | xml_escape }}</title>
+			{% if comic.story.content.desc %}<description>{{ comic.story.content.desc | xml_escape }}</description>
+			{% endif %}{% if comic.story.created_at %}<pubDate>{{ comic.story.created_at | date_to_xmlschema }}</pubDate>
 			{% endif %}<link>{{ comic.url | prepend: site.url }}</link>
 			<guid isPermaLink="true">{{ comic.url | prepend: site.url }}</guid>
 			<content type="html">
 			  <![CDATA[
 			    <a href="{{ comic.url | prepend: site.url }}">
-			      <img alt="test_pic" src="{{ site.url }}{{ comic.images[0] }}" />
+			      <img alt="{{ comic.story.content.panels[0].alt }}" src="{{ comic.story.content.panels[0].image }}" />
 			    </a>
 			  ]]>
 			</content>
-		</item>{% endfor %}
+		</item>{% endif %}{% endfor %}
 	</channel>
 </rss>

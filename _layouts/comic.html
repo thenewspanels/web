@@ -2,31 +2,31 @@
 layout: default
 ---
 
-{% assign paperUid = nil %}
-{% for paper in site.prismic.collections.papers %}
-{% for comic in paper.fragments.comics.group_documents %}
-{% if comic.fragments.comic.uid == document.uid %}
-{% assign paperUid = paper.uid %}
+{% assign paperSlug = nil %}
+{% for pg in site.pages %}
+{% if pg.story and pg.story.content.component == 'paper' %}
+{% if pg.story.content.comics contains page.story.uuid %}{% assign paperSlug = pg.story.full_slug %}{% endif %}
 {% endif %}
 {% endfor %}
-{% endfor %}
 
-{% if paperUid %}
+{% if paperSlug %}
 <script type="text/javascript">
     if (parent.location == self.location)
-        document.location.href = "{{ site.url }}/{{ paperUid }}/#{{ document.uid }}";
+        document.location.href = "{{ site.url }}/{{ paperSlug }}/#{{ page.story.slug }}";
 </script>
 {% endif %}
 
+{{ page.story.content._editable }}
 <main class="--frame">
-    <h3 class="title --content">{{ document.fragments.title.text }}</h3>
-    <p class="--sr-only">{{ document.fragments.desc.text }}</p>
+    <h3 class="title --content">{{ page.story.name }}</h3>
+    <p class="--sr-only">{{ page.story.content.desc }}</p>
     <div class="comic__wrapper">
         <div id="comicPanels" class="comic--wide">
-            {% for panel in document.fragments.panels.group_documents %}
+            {% for panel in page.story.content.panels %}
+            {{ panel._editable }}
             <div class="comic--wide__panel">
-                <img class="comic--wide__panel__img" src="{{ panel.fragments.image.url }}" alt="{{ panel.fragments.alt.text }}">
-                <p class="--sr-only">{{ panel.fragments.alt.text }}</p>
+                <img class="comic--wide__panel__img" src="{{ panel.image }}" alt="{{ panel.alt }}">
+                <p class="--sr-only">{{ panel.alt }}</p>
             </div>
             {% endfor %}
         </div>

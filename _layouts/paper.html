@@ -6,16 +6,21 @@ layout: default
 	{% include banner.html %}
 	{% include widgets.html %}
 
+    {{ page.story.content._editable }}
 	<div class="paper">
-		{% assign comics = document.fragments.comics.group_documents %}
+		{% assign comics = page.story.content.comics %}
 		{% assign positions = site.positions[0] %}
 		{% assign end = positions.size | minus: 1 %}
+
 		{% for i in (0..end) %}
 		{% assign position = positions[i] %}
-		{% assign comic = comics[i].fragments.comic %}
-		{% if comic %}
-		{% include comic.html uid=comic.uid rowStart=position.rowStart rowEnd=position.rowEnd colStart=position.colStart colEnd=position.colEnd %}
-		{% endif %}
+
+		{% assign comic = nil %}
+		{% for pg in site.pages %}{% if pg.story and pg.story.uuid == comics[i] %}
+		{% assign comic = pg.story %}
+		{% endif %}{% endfor %}
+
+		{% if comic %}{% include comic.html blok=comic rowStart=position.rowStart rowEnd=position.rowEnd colStart=position.colStart colEnd=position.colEnd %}{% endif %}
 		{% endfor %}
 	</div>
 </main>
@@ -32,7 +37,7 @@ layout: default
 <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
 <script type="text/javascript">
-	page('/{{ document.uid }}/', function() {
+	page('/{{ page.story.full_slug }}/', function() {
 
 	});
 	page('/comics/:id/', function(id) {
@@ -88,7 +93,7 @@ layout: default
 		    window.history.pushState('', '/', window.location.pathname);
 		else window.location.hash = '';
 
-		page('/{{ document.uid }}/');
+		page('/{{ page.story.full_slug }}/');
 
 		//preventBodyScroll(false);
 	};

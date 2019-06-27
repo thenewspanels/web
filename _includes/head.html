@@ -2,15 +2,15 @@
 
 {% assign title = site.name %}
 {% if page.title %}{% assign title = site.name | append: ' - ' | append: page.title %}{% endif %}
-{% if document %}{% assign title = site.name | append: ' - ' | append: document.fragments.title.text %}{% endif %}
+{% if page.story %}{% assign title = site.name | append: ' - ' | append: page.story.name %}{% endif %}
 {% if include.title %}{% assign title = include.title %}{% endif %}
 
-{% assign image = site.icon %}
-{% if document and document.type == 'comic' %}{% assign image = document.fragments.panels.group_documents[0].image.url %}{% endif %}
+{% assign image = site.url | append: site.icon %}
+{% if page.story and page.story.content.component == 'comic' %}{% assign image = page.story.content.panels[0].image %}{% endif %}
 
 {% assign description = site.description %}
 {% if page.description %}{% assign description = page.description %}{% endif %}
-{% if document and document.type == 'comic' %}{% assign description = document.fragments.desc.text %}{% endif %}
+{% if page.story and page.story.content.component == 'comic' %}{% assign description = page.story.content.desc %}{% endif %}
 
 <meta name="description" content="{{ description }}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=12.0, user-scalable=yes"/>
@@ -52,12 +52,12 @@
 <meta name="twitter:site" content="{{ site.twitter }}">
 <meta name="twitter:title" content="{{ title }}">
 <meta name="twitter:description" content="{{ description }}">
-<meta name="twitter:image" content="{{ site.url }}{{ image }}">
+<meta name="twitter:image" content="{{ image }}">
 
 <meta name="og:url" content="{{ site.url }}{{ page.url }}">
 <meta name="og:title" content="{{ title }}">
 <meta name="og:description" content="{{ description }}">
-<meta name="og:image" content="{{ site.url }}{{ image }}">
+<meta name="og:image" content="{{ image }}">
 <meta name="og:locale" content="en_US">
 <meta name="og:site_name" content="{{ site.name }}">
 

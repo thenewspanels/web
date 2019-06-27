@@ -1,12 +1,12 @@
-{% assign comic = site.prismic.collections.comics | where: 'uid', include.uid | first %}
-{% assign url = '/comics/' | append: include.uid | append: '/' %}
-<div class="paper__item comic" style="grid-area: {{ include.rowStart }} / {{ include.colStart }} / {{ include.rowEnd }} / {{ include.colEnd }};" data-url="{{ url }}" data-slug="{{ include.uid }}" onclick="onClick(this, '{{ url }}', '{{ include.uid }}');">
-	<h2 class="--sr-only">{{ comic.fragments.title.text }}</h2>
-	<p class="--sr-only">{{ comic.fragments.desc.text }}</p>
+{% assign blok = include.blok %}
+{% assign url = site.url | append: '/' | append: include.blok.full_slug %}
+<div class="paper__item comic" style="grid-area: {{ include.rowStart }} / {{ include.colStart }} / {{ include.rowEnd }} / {{ include.colEnd }};" data-url="{{ url }}" data-slug="{{ blok.slug }}" onclick="onClick(this, '{{ url }}', '{{ blok.slug }}');">
+	<h2 class="--sr-only">{{ blok.name }}</h2>
+	<p class="--sr-only">{{ blok.content.desc }}</p>
 	<div class="comic__container">
 		<div class="comic__images">
-			{% for image in comic.fragments.panels.group_documents %}
-			<img class="lozad img img--lazy comic__images__image" data-src="{{ image.fragments.image.url }}" alt="{{ image.fragments.alt.text }}">
+			{% for panel in blok.content.panels %}
+			<img class="lozad img img--lazy comic__images__image" data-src="{{ panel.image }}" alt="{{ panel.alt }}">
 			{% endfor %}
 		</div>
 		<div class="comic__prompt">
