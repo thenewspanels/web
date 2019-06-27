@@ -1,6 +1,6 @@
 {% assign blok = include.blok %}
-{% assign url = site.url | append: '/' | append: include.blok.full_slug %}
-<div class="paper__item comic" style="grid-area: {{ include.rowStart }} / {{ include.colStart }} / {{ include.rowEnd }} / {{ include.colEnd }};" data-url="{{ url }}" data-slug="{{ blok.slug }}" onclick="onClick(this, '{{ url }}', '{{ blok.slug }}');">
+{% assign url = site.baseurl | append: include.blok.full_slug %}
+<div class="paper__item comic" style="grid-area: {{ include.rowStart }} / {{ include.colStart }} / {{ include.rowEnd }} / {{ include.colEnd }};" data-url="{{ url }}" data-slug="{{ blok.slug }}" data-title="{{ blok.name }}" onclick="page('{{ url }}');">
 	<h2 class="--sr-only">{{ blok.name }}</h2>
 	<p class="--sr-only">{{ blok.content.desc }}</p>
 	<div class="comic__container">

@@ -10,14 +10,14 @@
     {% endif %}{% endfor %}
     <div class="widget">
         <div class="widget__text">
-            <span class="widget__title">Today's Date:</span>
+            <span id="widget-date-day"></span><br>
             <span id="widget-date"></span>
         </div>
     </div>
     <div class="widget">
         <img id="widget-weather-icon" style="height: 100%; margin-right: 16px;">
         <div class="widget__text">
-            <span class="widget__title">Weather (<span id="widget-weather-location"></span>):</span>
+            <span class="widget__title"><span id="widget-weather-temp"></span> (<span id="widget-weather-location"></span>)</span>
             <span id="widget-weather"></span>
         </div>
     </div>
@@ -25,12 +25,23 @@
 
 <script type="text/javascript">
     (function() {
-        $('#widget-date').text(new Date().toDateString());
+        $('#widget-date-day').text([
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ][new Date().getDay()]);
+
+        $('#widget-date').text(new Date().toDateString().substring(4));
 
         let bindWeather = function(weather) {
             $('#widget-weather').text(weather.description);
             $('#widget-weather-icon').attr("src", weather.icon);
             $("#widget-weather-location").text(weather.location);
+            $("#widget-weather-temp").html(weather.temp);
         };
 
         let weather = JSON.parse(localStorage.getItem("widget/weather")) || {};
@@ -46,9 +57,11 @@
                     response.lon += 360;
 
                 $.get('https://api.weatherbit.io/v2.0/current?lat=' + response.lat + '&lon=' + response.lon + '&key=e46ee7b526e14cfaa8402cb037e9efa5', function(weatherResponse) {
+                    console.log(weatherResponse);
                     weather.timestamp = Date.now();
                     weather.description = weatherResponse.data[0].weather.description;
                     weather.icon = "https://www.weatherbit.io/static/img/icons/" + weatherResponse.data[0].weather.icon + ".png";
+                    weather.temp = weatherResponse.data[0].temp + ' &deg;C';
 
                     localStorage.setItem("widget/weather", JSON.stringify(weather));
                     bindWeather(weather);

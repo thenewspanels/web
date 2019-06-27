@@ -1,5 +1,5 @@
 url: "https://thenewspanels.github.io/web"
-baseurl: "/web"
+baseurl: "/web/"
 domainurl: "https://thenewspanels.github.io"
 
 source: "./"
