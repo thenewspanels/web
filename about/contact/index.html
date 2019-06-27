@@ -79,8 +79,6 @@
     <body>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-
-
         <main class="--content">
 	<a href="https://thenewspanels.github.io/web" class="banner">
 	<div class="banner__container">
@@ -90,13 +88,7 @@
 	</div>
 </a>
 	
-<h2>Follow us on...</h2>
 
-<ul><li><a href="https://twitter.com/TheNewsPanels">Twitter (@TheNewsPanels)</a></li><li><a href="https://www.instagram.com/thenewspanels/">Instagram (@TheNewsPanels)</a></li></ul>
-
-<h2>Contact Us</h2>
-
-<p>Email: <a href="mailto:admin@thenewspanels.com">admin@thenewspanels.com</a></p>
 
 </main>
 
@@ -165,13 +157,17 @@
     });
     observer.observe();
 </script>
+
+        
+        <script src="//app.storyblok.com/f/storyblok-latest.js" type="text/javascript"></script>
+        
                 <script>
                 window.onload = function () {
                     var script = document.createElement('script');
                     var firstScript = document.getElementsByTagName('script')[0];
                     script.type = 'text/javascript';
                     script.async = true;
-                    script.src = '/web/sw-register.js?v=' + Date.now();
+                    script.src = '/web//sw-register.js?v=' + Date.now();
                     firstScript.parentNode.insertBefore(script, firstScript);
                 };
             </script>

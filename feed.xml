@@ -4,15 +4,16 @@
 		<title>The News Panels</title>
 		<description>The news in comics.</description>
 		<link>https://thenewspanels.github.io/web</link>
-		
 		<item>
-			<title></title>
-			<link>https://thenewspanels.github.io/web</link>
-			<guid isPermaLink="true">https://thenewspanels.github.io/web</guid>
+			<title>Philadelphian Born US Citizen Nearly Deported by ICE</title>
+			<description></description>
+			<pubDate>2019-06-26T21:59:37+00:00</pubDate>
+			<link>https://thenewspanels.github.io/web/comics/us-ice-deportation/</link>
+			<guid isPermaLink="true">https://thenewspanels.github.io/web/comics/us-ice-deportation/</guid>
 			<content type="html">
 			  <![CDATA[
-			    <a href="https://thenewspanels.github.io/web">
-			      <img alt="test_pic" src="https://thenewspanels.github.io/web" />
+			    <a href="https://thenewspanels.github.io/web/comics/us-ice-deportation/">
+			      <img alt="" src="//a.storyblok.com/f/60560/1000x811/c6e8c52555/1.png" />
 			    </a>
 			  ]]>
 			</content>
