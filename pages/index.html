@@ -5,8 +5,10 @@ permalink: /
 
 <!DOCTYPE html>
 <html lang="en">
-	{% assign post = site.prismic.collections.papers | last %}
-	{% assign url = site.url | append: '/' | append: post.uid | append: '/' %}
+    {% assign url = site.url | append: '/404' %}
+    {% for pg in site.pages %}{% if pg.story and pg.story.content.component == 'paper' %}
+    {% assign url = site.url | append: pg.url %}
+    {% endif %}{% endfor %}
 	<head>
 	    {% include head.html title="Redirecting to Comics Page" %}
 		<meta http-equiv="refresh" content="0; URL='{{ url }}'">

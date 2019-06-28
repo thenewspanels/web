@@ -48,15 +48,14 @@
         if (weather && Date.now() - weather.timestamp < 7200000) {
             bindWeather(weather);
         } else {
-            $.get('http://ip-api.com/json/', function(response) {
+            $.get('https://ipapi.co/json', function(response) {
                 weather.location = response.city + ', ' + response.region;
 
-                if (response.lat < 0)
-                    response.lat += 360;
-                if (response.lon < 0)
-                    response.lon += 360;
+                let getCoord = function(x) { return x < 0 ? x + 360 : x; };
+                let lat = getCoord(response.latitude);
+                let lon = getCoord(response.longitude);
 
-                $.get('https://api.weatherbit.io/v2.0/current?lat=' + response.lat + '&lon=' + response.lon + '&key=e46ee7b526e14cfaa8402cb037e9efa5', function(weatherResponse) {
+                $.get('https://api.weatherbit.io/v2.0/current?lat=' + lat + '&lon=' + lon + atob('JmtleT1lNDZlZTdiNTI2ZTE0Y2ZhYTg0MDJjYjAzN2U5ZWZhNQ=='), function(weatherResponse) {
                     console.log(weatherResponse);
                     weather.timestamp = Date.now();
                     weather.description = weatherResponse.data[0].weather.description;

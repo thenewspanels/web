@@ -3,155 +3,153 @@ layout: default
 ---
 
 <main>
-	{% include banner.html %}
-	{% include widgets.html %}
+    {% include banner.html %}
+    {% include widgets.html %}
 
     {{ page.story.content._editable }}
-	<div class="paper">
-		{% assign comics = page.story.content.comics %}
-		{% assign positions = site.positions[0] %}
-		{% assign end = positions.size | minus: 1 %}
+    <div class="paper">
+        {% assign comics = page.story.content.comics %}
+        {% assign positions = site.positions[0] %}
+        {% assign end = positions.size | minus: 1 %}
 
-		{% for i in (0..end) %}
-		{% assign position = positions[i] %}
+        {% for i in (0..end) %}
+        {% assign position = positions[i] %}
 
-		{% assign comic = nil %}
-		{% for pg in site.pages %}{% if pg.story and pg.story.uuid == comics[i] %}
-		{% assign comic = pg.story %}
-		{% endif %}{% endfor %}
+        {% assign comic = nil %}
+        {% for pg in site.pages %}{% if pg.story and pg.story.uuid == comics[i] %}
+        {% assign comic = pg.story %}
+        {% endif %}{% endfor %}
 
-		{% if comic %}{% include comic.html blok=comic rowStart=position.rowStart rowEnd=position.rowEnd colStart=position.colStart colEnd=position.colEnd %}{% endif %}
-		{% endfor %}
-	</div>
+        {% if comic %}{% include comic.html blok=comic rowStart=position.rowStart rowEnd=position.rowEnd colStart=position.colStart colEnd=position.colEnd %}{% endif %}
+        {% endfor %}
+    </div>
 </main>
 
 {% include footer.html paginator=true paginator_pages=site.prismic.collections.papers paginator_number=document.uid %}
 
 <div id="comic_dialog" class="dialog dialog--hidden">
-	<a id="comic_close" class="dialog__close"><i class="material-icons">close</i></a>
-	<div id="comic_iframe_container" class="dialog__content iframe__container">
-		<iframe id="comic_iframe"></iframe>
-	</div>
+    <a id="comic_close" class="dialog__close"><i class="material-icons">close</i></a>
+    <div id="comic_iframe_container" class="dialog__content iframe__container">
+        <iframe id="comic_iframe"></iframe>
+    </div>
 </div>
 
 <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
 <script type="text/javascript">
-	var _mainElement = document.getElementsByTagName("main")[0];
-	var _scrollingElements = [
-		document.body,
-		document.documentElement,
-		document.getElementsByTagName("html")[0],
-		_mainElement
-	];
+    var _mainElement = document.getElementsByTagName("main")[0];
+    var _scrollingElements = [
+        document.body,
+        document.documentElement,
+        document.getElementsByTagName("html")[0],
+        _mainElement
+    ];
 
-	var _dialogElement = $('#comic_dialog');
-	var _dialogCloseElement = $('#comic_close');
-	var _dialogFrameElement = $('#comic_iframe');
-	var _comics = $('.paper__item');
+    var _dialogElement = $('#comic_dialog');
+    var _dialogCloseElement = $('#comic_close');
+    var _dialogFrameElement = $('#comic_iframe');
+    var _comics = $('.paper__item');
 
-	var _routing = {
-		comicDialogOpen: function(ctx, next) {
-			// set dialog src, add to DOM
-			_dialogFrameElement.attr('src', "{{ site.url }}" + ctx.path);
-			_dialogFrameElement.appendTo('#comic_iframe_container');
+    var _routing = {
+        comicDialogOpen: function(ctx, next) {
+            console.log("opening dialog");
+        
+            // set dialog src, add to DOM
+            _dialogFrameElement.attr('src', "{{ site.url }}" + ctx.path);
+            _dialogFrameElement.appendTo('#comic_iframe_container');
 
-			// open dialog, add classes
-			_dialogElement.removeClass('dialog--hidden');
-			$(document.body).addClass('--dialog');
-		},
-		comicDialogReset: function(ctx, next) {
-			// remove iframe from DOM to prevent history tracking
-			_dialogFrameElement.remove();
-			_dialogFrameElement.attr('src', "about:blank");
+            // open dialog, add classes
+            _dialogElement.removeClass('dialog--hidden');
+            $(document.body).addClass('--dialog');
+        },
+        comicDialogReset: function(ctx, next) {
+            // remove iframe from DOM to prevent history tracking
+            _dialogFrameElement.remove();
+            _dialogFrameElement.attr('src', "about:blank");
 
-			// reset class names
-			_dialogElement.addClass("dialog--hidden");
-			$(document.body).removeClass('--dialog');
-		}
-	};
+            // reset class names
+            _dialogElement.addClass("dialog--hidden");
+            $(document.body).removeClass('--dialog');
+        }
+    };
 
-	page('{{ site.baseurl | append: page.story.full_slug }}/',
-			_routing.comicDialogReset);
+    page('{{ site.baseurl | append: page.story.full_slug }}/',
+            _routing.comicDialogReset);
 
-	page('{{ site.baseurl }}comics/:slug/',
-			_routing.comicDialogOpen);
+    page('{{ site.baseurl }}comics/:slug/',
+            _routing.comicDialogOpen);
 
-	page();
+    page();
 
-	function getWindowHeight() {
-	    return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-	}
+    function getWindowHeight() {
+        return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    }
 
-	// prevent body scrolling (mainly on iOS)
-	var preventScroll = function(e) {
-	    e.preventDefault();
-	    e.stopPropagation();
-	    console.log('touch blocked');
-	    return false;
-	};
+    // prevent body scrolling (mainly on iOS)
+    var preventScroll = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('touch blocked');
+        return false;
+    };
 
-	function preventBodyScroll(shouldPrevent) {
-	    if (shouldPrevent) {
+    function preventBodyScroll(shouldPrevent) {
+        if (shouldPrevent) {
             _mainElement.style.height = getWindowHeight().toString() + "px";
             _mainElement.addEventListener('touchmove', preventScroll, false);
-	        
-	        console.log('preventing scroll');
-	    } else {
-	        _mainElement.style.height = null;
-	        _mainElement.removeEventListener('touchmove', preventScroll, false);
-	    }
-	}
+            
+            console.log('preventing scroll');
+        } else {
+            _mainElement.style.height = null;
+            _mainElement.removeEventListener('touchmove', preventScroll, false);
+        }
+    }
 
-	// bind close listeners
-	(function() {
-		var closeDialog = function() {
-			page('{{ site.baseurl | append: page.story.full_slug }}/');
-		};
+    // bind close listeners
+    (function() {
+        var closeDialog = function() {
+            page('{{ site.baseurl | append: page.story.full_slug }}/');
+        };
 
-		_dialogCloseElement.click(closeDialog);
-		_dialogElement.click(closeDialog);
-	})();
+        _dialogCloseElement.click(closeDialog);
+        _dialogElement.click(closeDialog);
+    })();
 
-	// more prevention of body scrolling when dialog is open
-	_dialogElement.on('touchmove', preventScroll);
+    // more prevention of body scrolling when dialog is open
+    _dialogElement.on('touchmove', preventScroll);
 
-	// apply listeners to comic classes; open dialog when clicked
-	(function() {
-		// called when a comic is clicked - get metadata & open the dialog
-		var dialogPage = function(event) {
-			var url, slug;
-			if (this && this.getAttribute) {
-				url = this.getAttribute("data-url");
-				slug = this.getAttribute("data-slug");
-			}
+    // apply listeners to comic classes; open dialog when clicked
+    (function() {
+        // called when a comic is clicked - get metadata & open the dialog
+        var dialogPage = function(event) {
+            if (!_dialogElement.hasClass('dialog--hidden'))
+                return;
 
-			if (!event || !event.preventDefault)
-				event = window.event;
+            var url, slug;
+            if (this && this.getAttribute) {
+                url = this.getAttribute("data-url");
+                slug = this.getAttribute("data-slug");
+            }
 
-			if (url && slug && event)
-				event.preventDefault();
+            if (!event || !event.preventDefault)
+                event = window.event;
 
-			page(url);
-		};
+            if (url && slug && event)
+                event.preventDefault();
 
-		_comics.click(dialogPage);
-		_comics.on('touchstart', dialogPage);
-		_comics.on('tap', dialogPage);
-	})();
+            page(url);
+        };
 
-	// fix for iframe history tracking
-	$(window).on('popstate', function(e) {
-		console.log(e);
-		if (!_dialogElement.hasClass("dialog--hidden"))
-			window.history.back();
-	});
+        _comics.click(dialogPage);
+        _comics.on('touchstart', dialogPage);
+        _comics.on('tap', dialogPage);
+    })();
 
-	// load comic in dialog if hash is set
-	(function() {
-		var hash = window.location.hash ? window.location.hash.substring(1) : null;
-		window.location.hash = '';
-		if (typeof hash === "string" && hash.length > 0)
-			page("/comics/" + hash);
-	})();
+    // load comic in dialog if hash is set
+    (function() {
+        var hash = window.location.hash ? window.location.hash.substring(1) : null;
+        window.location.hash = '';
+        if (typeof hash === "string" && hash.length > 0)
+            page("/comics/" + hash);
+    })();
 </script>
