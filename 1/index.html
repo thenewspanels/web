@@ -88,21 +88,30 @@
 	</div>
 </a>
     <div class="widget__container">
-    
-    
     <div class="widget">
         <div class="widget__text">
             <span id="widget-date-day"></span><br>
             <span id="widget-date"></span>
         </div>
     </div>
-    <div class="widget">
+    <div id="widget-weather" class="widget" style="display: none;">
         <img id="widget-weather-icon" style="height: 100%; margin-right: 16px;">
         <div class="widget__text">
             <span class="widget__title"><span id="widget-weather-temp"></span> (<span id="widget-weather-location"></span>)</span>
-            <span id="widget-weather"></span>
+            <span id="widget-weather-desc"></span>
         </div>
     </div>
+    
+    
+    
+    
+    <div class="widget" onclick="page('/comics/us-ice-deportation/');">
+        <div class="widget__text">
+            <span>Philadelphian Born US Citizen Nearly Deported by ICE</span>
+            <a class="widget__title">Click to read more...</a>
+        </div>
+    </div>
+    
 </div>
 
 <script type="text/javascript">
@@ -120,10 +129,11 @@
         $('#widget-date').text(new Date().toDateString().substring(4));
 
         let bindWeather = function(weather) {
-            $('#widget-weather').text(weather.description);
+            $('#widget-weather-desc').text(weather.description);
             $('#widget-weather-icon').attr("src", weather.icon);
             $("#widget-weather-location").text(weather.location);
             $("#widget-weather-temp").html(weather.temp);
+            $('#widget-weather').show();
         };
 
         let weather = JSON.parse(localStorage.getItem("widget/weather")) || {};
