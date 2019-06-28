@@ -80,14 +80,14 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
         <main>
-	<a href="https://thenewspanels.github.io/web" class="banner">
+    <a href="https://thenewspanels.github.io/web" class="banner">
 	<div class="banner__container">
 		<img class="banner__icon" src="https://thenewspanels.github.io/web/images/favicon.svg">
 		&nbsp;
 		<span class="banner__name">The News Panels</span>
 	</div>
 </a>
-	<div class="widget__container">
+    <div class="widget__container">
     
     
     <div class="widget">
@@ -130,15 +130,14 @@
         if (weather && Date.now() - weather.timestamp < 7200000) {
             bindWeather(weather);
         } else {
-            $.get('http://ip-api.com/json/', function(response) {
+            $.get('https://ipapi.co/json', function(response) {
                 weather.location = response.city + ', ' + response.region;
 
-                if (response.lat < 0)
-                    response.lat += 360;
-                if (response.lon < 0)
-                    response.lon += 360;
+                let getCoord = function(x) { return x < 0 ? x + 360 : x; };
+                let lat = getCoord(response.latitude);
+                let lon = getCoord(response.longitude);
 
-                $.get('https://api.weatherbit.io/v2.0/current?lat=' + response.lat + '&lon=' + response.lon + '&key=e46ee7b526e14cfaa8402cb037e9efa5', function(weatherResponse) {
+                $.get('https://api.weatherbit.io/v2.0/current?lat=' + lat + '&lon=' + lon + atob('JmtleT1lNDZlZTdiNTI2ZTE0Y2ZhYTg0MDJjYjAzN2U5ZWZhNQ=='), function(weatherResponse) {
                     console.log(weatherResponse);
                     weather.timestamp = Date.now();
                     weather.description = weatherResponse.data[0].weather.description;
@@ -155,26 +154,40 @@
 
 
     <!--#storyblok#{"name": "paper", "space": "60560", "uid": "a21d68db-9e63-4b90-ad87-1622b9f4d51c", "id": "1320837"}-->
-	<div class="paper">
-		
-		
-		
+    <div class="paper">
+        
+        
+        
 
-		
-		
+        
+        
 
-		
-		
+        
+        
 
-		
+        
 
 <div class="paper__item comic" style="grid-area: 1 / 1 / 3 / 9;" data-url="/web/comics/us-ice-deportation" data-slug="us-ice-deportation" data-title="Philadelphian Born US Citizen Nearly Deported by ICE" onclick="page('/web/comics/us-ice-deportation');">
 	<h2 class="--sr-only">Philadelphian Born US Citizen Nearly Deported by ICE</h2>
-	<p class="--sr-only"></p>
+	<p class="--sr-only">Peter Sean Brown, a (Philadelphia born) Florida resident, was arrested for his illegal use of marijuana. However, instead of treating him like other U.S. citizens, he was flagged for deportation.</p>
 	<div class="comic__container">
 		<div class="comic__images">
 			
-			<img class="lozad img img--lazy comic__images__image" data-src="//a.storyblok.com/f/60560/1000x811/c6e8c52555/1.png" alt="">
+			<img class="lozad img img--lazy comic__images__image" data-src="//a.storyblok.com/f/60560/1000x811/c6e8c52555/1.png" alt="Peter Sean Brown, a (Philadelphia born) Florida resident, was arrested for his illegal use of marijuana. However, instead of treating him like other U.S. citizens, he was flagged for deportation.">
+			
+			<img class="lozad img img--lazy comic__images__image" data-src="//a.storyblok.com/f/60560/1091x811/b4c11e7838/2.png" alt="To Brown, it was complete nonsense, as he was not even close to being related to Jamaica.">
+			
+			<img class="lozad img img--lazy comic__images__image" data-src="//a.storyblok.com/f/60560/1256x811/730b962698/3.png" alt="The shock didn't stop there. Brown was constantly mocked and belittled by several officers while he was behind the bars.">
+			
+			<img class="lozad img img--lazy comic__images__image" data-src="//a.storyblok.com/f/60560/1010x811/3d45ca5fd7/4.png" alt="When Peter's friend and manager, Brooke Lynch, found his ICE detainer information online, it carried various false information.">
+			
+			<img class="lozad img img--lazy comic__images__image" data-src="//a.storyblok.com/f/60560/1096x811/f4cf0a811a/5.png" alt="Brown was finally released after his room mate emailed his birth certificate to the ICE. But before he left, the ICE confiscated all the documents related to his deportation.">
+			
+			<img class="lozad img img--lazy comic__images__image" data-src="//a.storyblok.com/f/60560/1256x812/d3df74efe5/6.png" alt="It was later found out that several Florida sheriffs participated in an ICE pilot program, where they would receive $50 for each immigrant they brought to the ICE.">
+			
+			<img class="lozad img img--lazy comic__images__image" data-src="//a.storyblok.com/f/60560/2127x912/0937ff0d55/7.png" alt="Brown was not the only victim to this ridiculous act. ICE frequently held U.S. citizens and constantly violated the Fourth Amendment, which prohibits unreasonable search and seizure.">
+			
+			<img class="lozad img img--lazy comic__images__image" data-src="//a.storyblok.com/f/60560/1256x812/74eec35900/8.png" alt="Brown lost his job and became immensely depressed after encountering massive racism from the authorities. An American-born citizen, Peter Sean Brown sued the Monroe sheriff department and asked the court to provide him with an appropriate amount of monetary damages.">
 			
 		</div>
 		<div class="comic__prompt">
@@ -190,57 +203,57 @@
 	</a>
 </div>
 
-		
-		
+        
+        
 
-		
-		
+        
+        
 
-		
-		
-		
+        
+        
+        
 
-		
-		
+        
+        
 
-		
-		
-		
+        
+        
+        
 
-		
-		
+        
+        
 
-		
-		
-		
+        
+        
+        
 
-		
-		
+        
+        
 
-		
-		
-		
+        
+        
+        
 
-		
-		
+        
+        
 
-		
-		
-		
+        
+        
+        
 
-		
-		
+        
+        
 
-		
-		
-		
+        
+        
+        
 
-		
-		
+        
+        
 
-		
-		
-	</div>
+        
+        
+    </div>
 </main>
 
 <div class="footer">
@@ -294,132 +307,130 @@
 </div>
 
 <div id="comic_dialog" class="dialog dialog--hidden">
-	<a id="comic_close" class="dialog__close"><i class="material-icons">close</i></a>
-	<div id="comic_iframe_container" class="dialog__content iframe__container">
-		<iframe id="comic_iframe"></iframe>
-	</div>
+    <a id="comic_close" class="dialog__close"><i class="material-icons">close</i></a>
+    <div id="comic_iframe_container" class="dialog__content iframe__container">
+        <iframe id="comic_iframe"></iframe>
+    </div>
 </div>
 
 <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
 <script type="text/javascript">
-	var _mainElement = document.getElementsByTagName("main")[0];
-	var _scrollingElements = [
-		document.body,
-		document.documentElement,
-		document.getElementsByTagName("html")[0],
-		_mainElement
-	];
+    var _mainElement = document.getElementsByTagName("main")[0];
+    var _scrollingElements = [
+        document.body,
+        document.documentElement,
+        document.getElementsByTagName("html")[0],
+        _mainElement
+    ];
 
-	var _dialogElement = $('#comic_dialog');
-	var _dialogCloseElement = $('#comic_close');
-	var _dialogFrameElement = $('#comic_iframe');
-	var _comics = $('.paper__item');
+    var _dialogElement = $('#comic_dialog');
+    var _dialogCloseElement = $('#comic_close');
+    var _dialogFrameElement = $('#comic_iframe');
+    var _comics = $('.paper__item');
 
-	var _routing = {
-		comicDialogOpen: function(ctx, next) {
-			// set dialog src, add to DOM
-			_dialogFrameElement.attr('src', "https://thenewspanels.github.io/web" + ctx.path);
-			_dialogFrameElement.appendTo('#comic_iframe_container');
+    var _routing = {
+        comicDialogOpen: function(ctx, next) {
+            console.log("opening dialog");
+        
+            // set dialog src, add to DOM
+            _dialogFrameElement.attr('src', "https://thenewspanels.github.io/web" + ctx.path);
+            _dialogFrameElement.appendTo('#comic_iframe_container');
 
-			// open dialog, add classes
-			_dialogElement.removeClass('dialog--hidden');
-			$(document.body).addClass('--dialog');
-		},
-		comicDialogReset: function(ctx, next) {
-			// remove iframe from DOM to prevent history tracking
-			_dialogFrameElement.remove();
-			_dialogFrameElement.attr('src', "about:blank");
+            // open dialog, add classes
+            _dialogElement.removeClass('dialog--hidden');
+            $(document.body).addClass('--dialog');
+        },
+        comicDialogReset: function(ctx, next) {
+            // remove iframe from DOM to prevent history tracking
+            _dialogFrameElement.remove();
+            _dialogFrameElement.attr('src', "about:blank");
 
-			// reset class names
-			_dialogElement.addClass("dialog--hidden");
-			$(document.body).removeClass('--dialog');
-		}
-	};
+            // reset class names
+            _dialogElement.addClass("dialog--hidden");
+            $(document.body).removeClass('--dialog');
+        }
+    };
 
-	page('/web/1/',
-			_routing.comicDialogReset);
+    page('/web/1/',
+            _routing.comicDialogReset);
 
-	page('/web/comics/:slug/',
-			_routing.comicDialogOpen);
+    page('/web/comics/:slug/',
+            _routing.comicDialogOpen);
 
-	page();
+    page();
 
-	function getWindowHeight() {
-	    return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-	}
+    function getWindowHeight() {
+        return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    }
 
-	// prevent body scrolling (mainly on iOS)
-	var preventScroll = function(e) {
-	    e.preventDefault();
-	    e.stopPropagation();
-	    console.log('touch blocked');
-	    return false;
-	};
+    // prevent body scrolling (mainly on iOS)
+    var preventScroll = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('touch blocked');
+        return false;
+    };
 
-	function preventBodyScroll(shouldPrevent) {
-	    if (shouldPrevent) {
+    function preventBodyScroll(shouldPrevent) {
+        if (shouldPrevent) {
             _mainElement.style.height = getWindowHeight().toString() + "px";
             _mainElement.addEventListener('touchmove', preventScroll, false);
-	        
-	        console.log('preventing scroll');
-	    } else {
-	        _mainElement.style.height = null;
-	        _mainElement.removeEventListener('touchmove', preventScroll, false);
-	    }
-	}
+            
+            console.log('preventing scroll');
+        } else {
+            _mainElement.style.height = null;
+            _mainElement.removeEventListener('touchmove', preventScroll, false);
+        }
+    }
 
-	// bind close listeners
-	(function() {
-		var closeDialog = function() {
-			page('/web/1/');
-		};
+    // bind close listeners
+    (function() {
+        var closeDialog = function() {
+            page('/web/1/');
+        };
 
-		_dialogCloseElement.click(closeDialog);
-		_dialogElement.click(closeDialog);
-	})();
+        _dialogCloseElement.click(closeDialog);
+        _dialogElement.click(closeDialog);
+    })();
 
-	// more prevention of body scrolling when dialog is open
-	_dialogElement.on('touchmove', preventScroll);
+    // more prevention of body scrolling when dialog is open
+    _dialogElement.on('touchmove', preventScroll);
 
-	// apply listeners to comic classes; open dialog when clicked
-	(function() {
-		// called when a comic is clicked - get metadata & open the dialog
-		var dialogPage = function(event) {
-			var url, slug;
-			if (this && this.getAttribute) {
-				url = this.getAttribute("data-url");
-				slug = this.getAttribute("data-slug");
-			}
+    // apply listeners to comic classes; open dialog when clicked
+    (function() {
+        // called when a comic is clicked - get metadata & open the dialog
+        var dialogPage = function(event) {
+            if (!_dialogElement.hasClass('dialog--hidden'))
+                return;
 
-			if (!event || !event.preventDefault)
-				event = window.event;
+            var url, slug;
+            if (this && this.getAttribute) {
+                url = this.getAttribute("data-url");
+                slug = this.getAttribute("data-slug");
+            }
 
-			if (url && slug && event)
-				event.preventDefault();
+            if (!event || !event.preventDefault)
+                event = window.event;
 
-			page(url);
-		};
+            if (url && slug && event)
+                event.preventDefault();
 
-		_comics.click(dialogPage);
-		_comics.on('touchstart', dialogPage);
-		_comics.on('tap', dialogPage);
-	})();
+            page(url);
+        };
 
-	// fix for iframe history tracking
-	$(window).on('popstate', function(e) {
-		console.log(e);
-		if (!_dialogElement.hasClass("dialog--hidden"))
-			window.history.back();
-	});
+        _comics.click(dialogPage);
+        _comics.on('touchstart', dialogPage);
+        _comics.on('tap', dialogPage);
+    })();
 
-	// load comic in dialog if hash is set
-	(function() {
-		var hash = window.location.hash ? window.location.hash.substring(1) : null;
-		window.location.hash = '';
-		if (typeof hash === "string" && hash.length > 0)
-			page("/comics/" + hash);
-	})();
+    // load comic in dialog if hash is set
+    (function() {
+        var hash = window.location.hash ? window.location.hash.substring(1) : null;
+        window.location.hash = '';
+        if (typeof hash === "string" && hash.length > 0)
+            page("/comics/" + hash);
+    })();
 </script>
 
         <script>
