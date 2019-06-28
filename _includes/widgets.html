@@ -1,26 +1,28 @@
 <div class="widget__container">
-    {% assign comics = site.prismic.collections.comics %}
-    {% for i in (0..3) %}{% if comics[i] %}
-    {% assign url = '/comics/' | append: comics[i].uid | append: '/' %}
-    <div class="widget" data-url="{{ url }}" data-slug="{{ comics[i].uid }}" onclick="onClick(this, '{{ url }}', '{{ comics[i].uid }}');">
-        <div class="widget__text">
-            <a class="widget__title">{{ comics[i].fragments.title.text }}</a>
-        </div>
-    </div>
-    {% endif %}{% endfor %}
     <div class="widget">
         <div class="widget__text">
             <span id="widget-date-day"></span><br>
             <span id="widget-date"></span>
         </div>
     </div>
-    <div class="widget">
+    <div id="widget-weather" class="widget" style="display: none;">
         <img id="widget-weather-icon" style="height: 100%; margin-right: 16px;">
         <div class="widget__text">
             <span class="widget__title"><span id="widget-weather-temp"></span> (<span id="widget-weather-location"></span>)</span>
-            <span id="widget-weather"></span>
+            <span id="widget-weather-desc"></span>
         </div>
     </div>
+    {% assign i = 0 %}
+    {% for pg in site.pages %}{% if pg.story and pg.story.content.component == 'comic' and i < 3 %}
+    {% assign i = i | plus: 1 %}
+    {% assign url = pg.url %}
+    <div class="widget" onclick="page('{{ url }}');">
+        <div class="widget__text">
+            <span>{{ pg.story.name }}</span>
+            <a class="widget__title">Click to read more...</a>
+        </div>
+    </div>
+    {% endif %}{% endfor %}
 </div>
 
 <script type="text/javascript">
@@ -38,10 +40,11 @@
         $('#widget-date').text(new Date().toDateString().substring(4));
 
         let bindWeather = function(weather) {
-            $('#widget-weather').text(weather.description);
+            $('#widget-weather-desc').text(weather.description);
             $('#widget-weather-icon').attr("src", weather.icon);
             $("#widget-weather-location").text(weather.location);
             $("#widget-weather-temp").html(weather.temp);
+            $('#widget-weather').show();
         };
 
         let weather = JSON.parse(localStorage.getItem("widget/weather")) || {};
