@@ -5,13 +5,14 @@
 This file contains basic docs explaining how the site is built, what dependencies it uses,
 and how to host/test it locally.
 
-## TODO
+## Access
 
-- [x] comments w Disqus
-- [ ] create more newspaper-like layouts
-- [ ] design polish, animations, transitions, etc
-- [ ] ensure compatibility with other browsers
-- [x] content management system - forestry.io
+- DNS / domain registrar: [domains.google.com](https://domains.google.com/)
+- CI building/deployment: [travis-ci.com](https://travis-ci.com/thenewspanels)
+- Weather provider (homepage widget): [weatherbit.io](https://www.weatherbit.io/)
+- Site search / indexing: [algolia.com](https://www.algolia.com/)
+- Comments moderation: [disqus.com](https://the-newspanels.disqus.com/)
+- CMS: [storyblok.com](https://storyblok.com)
 
 ## Building
 
